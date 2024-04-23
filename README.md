@@ -16,7 +16,7 @@
 4. Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
     <br> <br>Note: Make sure the sample inventory is added only when both the part and product lists are empty. When adding the sample inventory appropriate for the store, the inventory is stored in a set so duplicate items cannot be added to your products. When duplicate items are added, make a “multi-pack” part.
 >File(s): /src/main/java/com/example/demo/bootstrap/BootStrapData.java <br>
-> Edited lines 40-41, 43-68 <br>
+> Edited lines 42-96 <br>
 5. Add a “Buy Now” button to your product list. Your “Buy Now” button must meet each of the following parameters:
    <br>•  The “Buy Now” button must be next to the buttons that update and delete products.
    <br>•  The button should decrement the inventory of that product by one. It should not affect the inventory of any of the associated parts.
