@@ -23,8 +23,6 @@
    <br>•  Display a message that indicates the success or failure of a purchase.
 >File(s): /src/main/java/com/example/demo/controllers/AddProductController.java<br>
 > Lines 175-188<br>
-> /src/main/resources/templates/InhousePartForm.html<br>
-> Lines 2, 27, 29, 31 trying to fix an error with update button, but it did not work<br>
 > /src/main/resources/templates/mainscreen.html<br>
 > Lines 96<br>
 > /src/main/resources/templates/outOfStock.html<br>
