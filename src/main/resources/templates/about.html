@@ -30,6 +30,28 @@
         p {
             line-height: 1.6;
         }
+        .go-back-button {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .go-back-button .btn-primary {
+            margin: 0;
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 300ms;
+            border-radius: 20px;
+        }
+
+        .go-back-button .btn-primary:hover {
+            background: #007095;
+        }
     </style>
 </head>
 <body>
@@ -39,6 +61,8 @@
 <section>
     <p>TechForge PC is not just a computer shop; it's a haven for tech enthusiasts, professionals, and novices alike. Established with a passion for technology and a commitment to customer satisfaction, we offer a diverse range of high-quality computing products and services tailored to meet your every need. From cutting-edge desktops and laptops to personalized builds and expert technical support, we're dedicated to empowering your digital journey. With a team of knowledgeable staff who share a genuine love for all things tech, we strive to provide a welcoming environment where you can explore, learn, and make informed decisions about your computing needs. At TechForge PC, we don't just sell computers; we cultivate experiences and forge connections that last a lifetime.</p>
 </section>
-<a th:href="@{/mainscreen}"><button type="button" class="btn btn-primary">Go Back</button></a>
+<a th:href="@{/mainscreen}" class="go-back-button">
+    <button type="button" class="btn btn-primary">Go Back</button>
+</a>
 </body>
 </html>

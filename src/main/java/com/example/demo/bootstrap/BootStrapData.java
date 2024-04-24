@@ -45,11 +45,12 @@ public class BootStrapData implements CommandLineRunner {
     public void loadSampleData() {
         if (partRepository.count() == 0 && productRepository.count() == 0) {
 
-            // Creating InhouseParts
             InhousePart processor = new InhousePart();
             processor.setName("Intel Core i7 Processor");
             processor.setPrice(987.99);
-            processor.setInv(187);
+            processor.setInv(350);
+            processor.setMinInv(50);
+            processor.setMaxInv(300);
             processor.setPartId(1);
             partRepository.save(processor);
 
@@ -57,30 +58,44 @@ public class BootStrapData implements CommandLineRunner {
             motherboard.setName("ASUS Prime Z390-A Motherboard");
             motherboard.setPrice(287.99);
             motherboard.setInv(137);
+            motherboard.setMinInv(50);
+            motherboard.setMaxInv(250);
             motherboard.setPartId(2);
             partRepository.save(motherboard);
 
             InhousePart ram = new InhousePart();
             ram.setName("Corsair Vengeance LPX 32GB (2x16GB) DDR4 3200MHz");
             ram.setPrice(187.99);
-            ram.setInv(146);
+            ram.setInv(46);
             ram.setPartId(3);
+            ram.setMinInv(50);
+            ram.setMaxInv(300);
             partRepository.save(ram);
 
-            // Convert some InhouseParts to OutsourcedParts
             OutsourcedPart graphicsCard = new OutsourcedPart();
             graphicsCard.setName("NVIDIA GeForce RTX 4080 TI");
             graphicsCard.setPrice(2987.99);
             graphicsCard.setInv(143);
-            graphicsCard.setCompanyName("Some Manufacturer"); // Set the company name for outsourced parts
+            graphicsCard.setMinInv(80);
+            graphicsCard.setMaxInv(250);
+            graphicsCard.setCompanyName("Some Manufacturer");
             outsourcedPartRepository.save(graphicsCard);
 
             OutsourcedPart psu = new OutsourcedPart();
             psu.setName("Corsair CX750M 750W 80+ Bronze Certified Fully Modular PSU");
             psu.setPrice(87.99);
             psu.setInv(123);
+            psu.setMinInv(50);
+            psu.setMaxInv(300);
             psu.setCompanyName("Another Manufacturer");
             outsourcedPartRepository.save(psu);
+
+            processor.validateInventory();
+            motherboard.validateInventory();
+            ram.validateInventory();
+            graphicsCard.validateInventory();
+            psu.validateInventory();
+
 
             Product supremeGamingBeast = new Product("Supreme Gaming Beast", 9999.99, 14);
             Product epicGamingArsenal = new Product("Epic Gaming Arsenal", 8543.99, 12);

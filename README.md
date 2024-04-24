@@ -29,3 +29,27 @@
 > Lines 1-12 <br>
 > /src/main/resources/templates/purchaseConfirmation<br>
 > Lines 1-12 <br>
+6. Modify the parts to track maximum and minimum inventory by doing the following:
+   <br>•  Add additional fields to the part entity for maximum and minimum inventory.
+   <br>•  Modify the sample inventory to include the maximum and minimum fields.
+   <br>•  Add to the InhousePartForm and OutsourcedPartForm forms additional text inputs for the inventory so the user can set the maximum and minimum values.
+   <br>•  Rename the file the persistent storage is saved to.
+   <br>•  Modify the code to enforce that the inventory is between or at the minimum and maximum value.
+>File(s): /src/main/resources/templates/about.html<br>
+> Lines 33-54, 64-66 Stylizing the 'Go Back' button<br>
+> /src/main/resources/templates/mainscreen.html<br>
+> Lines 20-25, 54-55, 60, 64-65<br>
+> /src/main/resources/templates/InhousePartForm.html<br>
+> Lines 25-26 text inputs for minInv and maxInv
+> /src/main/resources/templates/OutsourcedPartForm.html<br>
+> Lines 24-25 text inputs for minInv and maxInv 
+> /src/main/java/com/example/demo/controllers/AddInhouseController.java<br>
+> Lines 44-53 enforce that the inventory is between or at the minimum and maximum value inhouse part<br>
+> /src/main/java/com/example/demo/controllers/AddOutsourcedController.java<br>
+> Lines 45-59, 61 enforce that the inventory is between or at the minimum and maximum value outsourced part<br>
+> /src/main/resources/application.properties<br>
+> Lines 1, 7 Establishing port and Rename the file the persistent storage is saved to.<br>
+> /src/main/java/com/example/demo/bootstrap/BootStrapData.java <br>
+> Edited lines 51-53, 61-62,69, 71-72, 79-81, 88-89, 93-99 Modify the sample inventory to include the maximum and minimum fields. Testing the color coding html, if it low the row is red, if it over the inventory the row is green.  <br>
+> /src/main/java/com/example/demo/domain/Part.java<br>
+> Lines 31-32, 43, 47-48, 51, 56-57, 92-119 Add additional fields to the part entity for maximum and minimum inventory.
