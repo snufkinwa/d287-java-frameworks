@@ -48,45 +48,45 @@ public class BootStrapData implements CommandLineRunner {
             InhousePart processor = new InhousePart();
             processor.setName("Intel Core i7 Processor");
             processor.setPrice(987.99);
-            processor.setInv(350);
-            processor.setMinInv(50);
-            processor.setMaxInv(300);
+            processor.setInv(35);
+            processor.setMinInv(5);
+            processor.setMaxInv(30);
             processor.setPartId(1);
             partRepository.save(processor);
 
             InhousePart motherboard = new InhousePart();
             motherboard.setName("ASUS Prime Z390-A Motherboard");
             motherboard.setPrice(287.99);
-            motherboard.setInv(137);
-            motherboard.setMinInv(50);
-            motherboard.setMaxInv(250);
+            motherboard.setInv(4);
+            motherboard.setMinInv(5);
+            motherboard.setMaxInv(25);
             motherboard.setPartId(2);
             partRepository.save(motherboard);
 
             InhousePart ram = new InhousePart();
             ram.setName("Corsair Vengeance LPX 32GB (2x16GB) DDR4 3200MHz");
             ram.setPrice(187.99);
-            ram.setInv(46);
+            ram.setInv(7);
             ram.setPartId(3);
-            ram.setMinInv(50);
-            ram.setMaxInv(300);
+            ram.setMinInv(5);
+            ram.setMaxInv(30);
             partRepository.save(ram);
 
             OutsourcedPart graphicsCard = new OutsourcedPart();
             graphicsCard.setName("NVIDIA GeForce RTX 4080 TI");
             graphicsCard.setPrice(2987.99);
-            graphicsCard.setInv(143);
-            graphicsCard.setMinInv(80);
-            graphicsCard.setMaxInv(250);
+            graphicsCard.setInv(14);
+            graphicsCard.setMinInv(8);
+            graphicsCard.setMaxInv(25);
             graphicsCard.setCompanyName("Some Manufacturer");
             outsourcedPartRepository.save(graphicsCard);
 
             OutsourcedPart psu = new OutsourcedPart();
             psu.setName("Corsair CX750M 750W 80+ Bronze Certified Fully Modular PSU");
             psu.setPrice(87.99);
-            psu.setInv(123);
-            psu.setMinInv(50);
-            psu.setMaxInv(300);
+            psu.setInv(12);
+            psu.setMinInv(5);
+            psu.setMaxInv(30);
             psu.setCompanyName("Another Manufacturer");
             outsourcedPartRepository.save(psu);
 

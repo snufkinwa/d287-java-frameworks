@@ -169,7 +169,46 @@ return "OutsourcedPartForm";
 > A good portion of this prompt error messages were made to enforce inventory stays between minimum and maximum, did not add more as it met requirements
 > 
 8. Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
->
+>File(s): 
+> /src/test/java/com/example/demo/domain/PartTest.java<br>
+> <br><code>
+@Test
+void getMaxInv(){
+int inv=5;
+int max=10;
+partIn.setMaxInv(max);
+partIn.setInv(inv);
+assertEquals(true, Part.atMinInv(inv));
+partOut.setMaxInv(max);
+partOut.setInv(inv);
+assertEquals(true,Part.atMaxInv(inv));
+}
+@Test
+void getMinInv() {
+int inv=5;
+int min=3;
+partIn.setMinInv(min);
+partIn.setInv(inv);
+assertEquals(true, Part.atMinInv(inv));
+partOut.setMinInv(min);
+partOut.setInv(inv);
+assertEquals(true,Part.atMaxInv(inv));
+}</code><br><br>
 > 
+> /src/main/java/com/example/demo/domain/Part.java
+> Lines 113-124<br> Needed static to test<br><code>    public static boolean atMinInv(int inv) {
+if (inv <= (minInv - 1)){
+return false;
+}
+else { return true; }
+}
+public static boolean atMaxInv(int inv) {
+if (inv > maxInv) {
+return false;
+}
+else { return true; }
+}</code><br><br>
+> 
+> All other files edited including BootStrapData.java and application.properties were altered to test to make sure all other features are working correctly after make maxInv and minInv static 
 9.   Remove the class files for any unused validators in order to clean your code.
 >
