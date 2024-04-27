@@ -178,13 +178,19 @@ public class AddProductController {
         ProductService productService = context.getBean(ProductServiceImpl.class);
         Product product = productService.findById(theID);
 
-        if (product.getInv() > 0) {
-            product.setInv(product.getInv() - 1);
-            productService.save(product);
-            return "paymentConfirmation";
-        } else {
+        if (product.getInv() <= 0) {
             return "outOfStock";
         }
 
+        // Reduce inventory and save the product
+        product.setInv(product.getInv() - 1);
+        //Reduce part inventory
+        //for (Part part : product.getParts()) {
+        //    part.setInv(part.getInv() - 1);
+        //}
+
+        productService.save(product);
+        return "paymentConfirmation";
     }
 }
+
