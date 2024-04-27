@@ -211,4 +211,5 @@ else { return true; }
 > 
 > All other files edited including BootStrapData.java and application.properties were altered to test to make sure all other features are working correctly after make maxInv and minInv static 
 9.   Remove the class files for any unused validators in order to clean your code.
->
+>src/main/java/com/example/demo/validators/DeletePartValidator.java
+> Not being used
