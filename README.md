@@ -291,4 +291,6 @@ REVISIONS SECOND ATTEMPT
 > /src/main/java/com/example/demo/domain/Part.java
 > Line 31-32 Removing all static variables this was causing inventory not to be updated correctly. <br>Line 110-115 Fixing variables for test to work 
 > /src/test/java/com/example/demo/domain/PartTest.java
-> Line 106, 108, 110, 115,117, 119 Fixed test to not need static variables. Test are successfully pasted. 
+> Line 106, 108, 110, 115,117, 119 Fixed test to not need static variables. Test are successfully pasted.
+> /src/main/resources/templates/about.html<br>
+> Line 6-8, adding bootstrap CSS for consistency, <br> Line 58-81 CSS for navigation <br> Line 85-93 Added navigation to about.html for consistency and thoroughness in the prompt.
