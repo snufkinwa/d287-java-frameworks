@@ -13,24 +13,52 @@
     <title>TechForge PC || Unleash Your Computing Potential </title>
 
     <style>
-        .about-us-button {
-            text-align: center;
-            margin-top: 20px;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-link {
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                margin-top: 10px;
+            }
+
+            .navbar-nav .nav-link {
+                margin: 5px 0;
+            }
+        }
+
         .table-row-warning {
             background-color: #d4edda;
         }
+
         .table-row-danger {
-            background-color: #f8d7da; /* Light red background color */
+            background-color: #f8d7da;
         }
     </style>
 </head>
 <body>
-<div class="about-us-button">
-    <a th:href="@{/about}">
-        <button type="button" class="btn btn-primary">About</button>
-    </a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/mainscreen}">TechForge PC</a>
+        <div class="navbar-nav ml-auto">
+            <a class="nav-link" th:href="@{/mainscreen}">Home</a>
+            <a class="nav-link" th:href="@{/about}">About</a>
+        </div>
+    </div>
+</nav>
+
+
 <div class="container">
     <h1>Shop</h1>
     <hr>

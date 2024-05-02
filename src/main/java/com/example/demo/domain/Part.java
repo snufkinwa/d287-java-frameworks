@@ -28,9 +28,8 @@ public abstract class Part implements Serializable {
     double price;
     @Min(value = 0, message = "Inventory value must be positive")
     int inv;
-    static int minInv;
-    static int maxInv;
-
+    int minInv;
+    int maxInv;
 
     @ManyToMany
     @JoinTable(name="product_part", joinColumns = @JoinColumn(name="part_id"),
@@ -44,8 +43,6 @@ public abstract class Part implements Serializable {
         this.name = name;
         this.price = price;
         this.inv = inv;
-        this.minInv = minInv;
-        this.maxInv = maxInv;
 
     }
 
@@ -110,17 +107,12 @@ public abstract class Part implements Serializable {
         return inv >= minInv && inv <= maxInv;
     }
 
-    public static boolean atMinInv(int inv) {
-        if (inv <= (minInv - 1)){
-            return false;
-        }
-        else { return true; }
+    public boolean atMinInv(int inv) {
+        return inv >= minInv;
     }
-    public static boolean atMaxInv(int inv) {
-        if (inv > maxInv) {
-            return false;
-        }
-        else { return true; }
+
+    public boolean atMaxInv(int inv) {
+        return inv <= maxInv;
     }
 
     public void validateInventory() {

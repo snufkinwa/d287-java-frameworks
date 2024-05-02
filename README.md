@@ -8,28 +8,92 @@
 1.	Edit README.md to include notes describing changes of code.
 
 2. Customize the HTML user interface for your customer’s application. The user interface should include the shop name, the product names, and the names of the parts.Customize the HTML user interface for your customer’s application. The user interface should include the shop name, the product names, and the names of the parts.
-> File:<br> /src/main/resources/templates/mainscreen.html <br> Edited on line 14, 21, 53
+> File:<br> /src/main/resources/templates/mainscreen.html <br> Edited on line 14 ```<title>TechForge PC</title>```, 21 ```<h2>PC Parts</h2>```, 53 ```    <h2>PC Builds</h2>```
 3. Add an “About” page to the application to describe your chosen customer’s company to web viewers and include navigation to and from the “About” page and the main screen.
-> File(s):<br> /src/main/resources/templates/about.html<br>/src/main/resources/templates/mainscreen.html <br> Edited on line 24-28
+> File(s):<br> /src/main/resources/templates/about.html<br> Made entire file <br>/src/main/resources/templates/mainscreen.html <br> Edited on line 24-28 ```  <a th:href="@{/about}">
+<button type="button" class="btn btn-primary">About</button>
+</a></div>```
 > /src/main/java/com/example/demo/controllers/MainScreenControllerr.java<br>
-> Lines 55-59
+> Lines 55-59 <code> @GetMapping("/about") public String about() {
+return "about";
+}
+</code><br><br>
+> Any other changes were for aesthetic, the changes above fulfill this steps prompt. 
 4. Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
     <br> <br>Note: Make sure the sample inventory is added only when both the part and product lists are empty. When adding the sample inventory appropriate for the store, the inventory is stored in a set so duplicate items cannot be added to your products. When duplicate items are added, make a “multi-pack” part.
 >File(s):<br> /src/main/java/com/example/demo/bootstrap/BootStrapData.java <br>
 > Edited lines 42-96 <br>
+> <code>loadSampleData();
+}
+public void loadSampleData() {
+        if (partRepository.count() == 0 && productRepository.count() == 0) {
+            // Creating InhouseParts
+            InhousePart processor = new InhousePart();
+            processor.setName("Intel Core i7 Processor");
+            processor.setPrice(987.99);
+            processor.setInv(187);
+            processor.setPartId(1);
+            partRepository.save(processor);<br>
+            InhousePart motherboard = new InhousePart();
+            motherboard.setName("ASUS Prime Z390-A Motherboard");
+            motherboard.setPrice(287.99);
+            motherboard.setInv(137);
+            motherboard.setPartId(2);
+            partRepository.save(motherboard);<br>
+            InhousePart ram = new InhousePart();
+            ram.setName("Corsair Vengeance LPX 32GB (2x16GB) DDR4 3200MHz");
+            ram.setPrice(187.99);
+            ram.setInv(146);
+            ram.setPartId(3);
+            partRepository.save(ram);<br>
+            // Convert some InhouseParts to OutsourcedParts
+            OutsourcedPart graphicsCard = new OutsourcedPart();
+            graphicsCard.setName("NVIDIA GeForce RTX 4080 TI");
+            graphicsCard.setPrice(2987.99);
+            graphicsCard.setInv(143);
+            graphicsCard.setCompanyName("Some Manufacturer"); // Set the company name for outsourced parts
+            outsourcedPartRepository.save(graphicsCard);<br>
+            OutsourcedPart psu = new OutsourcedPart();
+            psu.setName("Corsair CX750M 750W 80+ Bronze Certified Fully Modular PSU");
+            psu.setPrice(87.99);
+            psu.setInv(123);
+            psu.setCompanyName("Another Manufacturer");
+            outsourcedPartRepository.save(psu);<br>
+            Product supremeGamingBeast = new Product("Supreme Gaming Beast", 9999.99, 14);
+            Product epicGamingArsenal = new Product("Epic Gaming Arsenal", 8543.99, 12);
+            Product legendaryGamingRig = new Product("Legendary Gaming Rig", 7897.99, 10);
+            Product mightyGamingFortress = new Product("Mighty Gaming Fortress", 6879.99, 11);
+            Product eliteGamingCitadel = new Product("Elite Gaming Citadel", 4356.99, 28);<br>
+            productRepository.save(supremeGamingBeast);
+            productRepository.save(epicGamingArsenal);
+            productRepository.save(legendaryGamingRig);
+            productRepository.save(mightyGamingFortress);
+            productRepository.save(eliteGamingCitadel);</code>
+
 5. Add a “Buy Now” button to your product list. Your “Buy Now” button must meet each of the following parameters:
    <br>•  The “Buy Now” button must be next to the buttons that update and delete products.
    <br>•  The button should decrement the inventory of that product by one. It should not affect the inventory of any of the associated parts.
    <br>•  Display a message that indicates the success or failure of a purchase.
 >File(s):<br>
 >/src/main/java/com/example/demo/controllers/AddProductController.java<br>
-> Lines 175-188<br>
+> Lines 175-188 ```@GetMapping("/buyProduct")
+public String buyProduct(@RequestParam("productID") int theID, Model theModel){
+ProductService productService = context.getBean(ProductServiceImpl.class);
+Product product = productService.findById(theID);
+        if (product.getInv() > 0) {
+            product.setInv(product.getInv() - 1);
+            productService.save(product);
+            return "paymentConfirmation";
+        } else {
+            return "outOfStock";
+        }
+}```<br>
 > /src/main/resources/templates/mainscreen.html<br>
-> Lines 96<br>
+> Lines 95 ```  <a th:href="@{/buyProduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3">Buy Now</a>```<br>
 > /src/main/resources/templates/outOfStock.html<br>
-> Lines 1-12 <br>
+> Lines 1-12, Made entire file for out of stock <br>
 > /src/main/resources/templates/purchaseConfirmation<br>
-> Lines 1-12 <br>
+> Lines 1-12 Made entire file for Payment confirmation<br>
 6. Modify the parts to track maximum and minimum inventory by doing the following:
    <br>•  Add additional fields to the part entity for maximum and minimum inventory.
    <br>•  Modify the sample inventory to include the maximum and minimum fields.
@@ -38,7 +102,7 @@
    <br>•  Modify the code to enforce that the inventory is between or at the minimum and maximum value.
 >File(s): <br>
 >/src/main/resources/templates/about.html<br>
-> Lines 33-54, 64-66 Stylizing the 'Go Back' button<br>
+> Lines 33-54, 64-66 Stylizing the 'Go Back' button<br><br>
 > /src/main/resources/templates/mainscreen.html<br>
 > Lines 20-25<br><br><code>      .table-row-warning {
 background-color: #d4edda;
@@ -50,7 +114,7 @@ background-color: #f8d7da; /* Light red background color */
 > 54-55<br><br>``` <th>Min Inventory</th><th>Max Inventory</th>```<br><br>, 
 > 60
 > <br><br>```<tr th:each="tempPart : ${parts}" th:class="${tempPart.inv >= tempPart.maxInv} ? 'table-row-warning' : (${tempPart.inv <= tempPart.minInv} ? 'table-row-danger' : '')">```<br><br>, 
-> 64-65<br><br><code></code><br><br><br>
+> 64-65<br><br>```<td th:text="${tempPart.minInv}">1</td><td th:text="${tempPart.maxInv}">1</td>```<br><br><br>
 > /src/main/resources/templates/InhousePartForm.html<br>
 > Lines 25-26<br><br>```<p><input type="text" th:field="*{minInv}" placeholder="Min Inventory" class="form-control mb-4 col-4"/></p><p><input type="text" th:field="*{maxInv}" placeholder="Max Inventory" class="form-control mb-4 col-4"/></p>```<br><br> text inputs for minInv and maxInv<br>
 > /src/main/resources/templates/OutsourcedPartForm.html<br>
@@ -210,6 +274,21 @@ else { return true; }
 }</code><br><br>
 > 
 > All other files edited including BootStrapData.java and application.properties were altered to test to make sure all other features are working correctly after make maxInv and minInv static 
-9.   Remove the class files for any unused validators in order to clean your code.
+9. Remove the class files for any unused validators in order to clean your code.
 >src/main/java/com/example/demo/validators/DeletePartValidator.java
-> Not being used
+> <br>Deleted file it is not being used
+>
+REVISIONS SECOND ATTEMPT 
+> File(s):
+> /src/main/java/com/example/demo/controllers/AddOutSourcedPartController.java
+> Line 50 <code> return "OutSourcedPartForm";</code> makes sure validation occurs correctly on OutSourePart<br>
+> /src/main/resources/application.properties
+> Changed to make sure maxInventory and minInventory was not cleared after being tested.
+> /src/main/java/com/example/demo/bootstrap/BootStrapData.java
+> Lines 51, 6. Changed data to be between Maximum and Minimum inventory
+> /src/main/resources/templates/mainscreen.html
+> Line 16-40 Added CSS for Navigation, <br>Line 51-61 Making navigation that contains the descriptive shop name 'TechForge PC' 
+> /src/main/java/com/example/demo/domain/Part.java
+> Line 31-32 Removing all static variables this was causing inventory not to be updated correctly. <br>Line 110-115 Fixing variables for test to work 
+> /src/test/java/com/example/demo/domain/PartTest.java
+> Line 106, 108, 110, 115,117, 119 Fixed test to not need static variables. Test are successfully pasted. 

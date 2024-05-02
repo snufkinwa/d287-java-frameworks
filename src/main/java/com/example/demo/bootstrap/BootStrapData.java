@@ -48,7 +48,7 @@ public class BootStrapData implements CommandLineRunner {
             InhousePart processor = new InhousePart();
             processor.setName("Intel Core i7 Processor");
             processor.setPrice(987.99);
-            processor.setInv(35);
+            processor.setInv(29);
             processor.setMinInv(5);
             processor.setMaxInv(30);
             processor.setPartId(1);
@@ -57,7 +57,7 @@ public class BootStrapData implements CommandLineRunner {
             InhousePart motherboard = new InhousePart();
             motherboard.setName("ASUS Prime Z390-A Motherboard");
             motherboard.setPrice(287.99);
-            motherboard.setInv(4);
+            motherboard.setInv(6);
             motherboard.setMinInv(5);
             motherboard.setMaxInv(25);
             motherboard.setPartId(2);

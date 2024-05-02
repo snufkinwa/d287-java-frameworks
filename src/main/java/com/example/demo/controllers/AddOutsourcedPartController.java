@@ -47,7 +47,7 @@ public class AddOutsourcedPartController {
 
             if (part.getInv() < part.getMinInv()) {
                 theBindingResult.rejectValue("inv", "error.LowInventory", "Inventory must be above the minimum inventory value");
-                //return "OutSourcedPartForm";
+                return "OutSourcedPartForm";
             } else if (part.getInv() > part.getMaxInv()) {
                 theBindingResult.rejectValue("inv", "error.HighInventory", "Inventory must be below the maximum inventory value");
                 return "OutsourcedPartForm";
