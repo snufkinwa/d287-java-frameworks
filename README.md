@@ -17,8 +17,7 @@
 > Lines 55-59 <code> @GetMapping("/about") public String about() {
 return "about";
 }
-</code><br><br>
-> Any other changes were for aesthetic, the changes above fulfill this steps prompt. 
+</code><br>
 4. Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
     <br> <br>Note: Make sure the sample inventory is added only when both the part and product lists are empty. When adding the sample inventory appropriate for the store, the inventory is stored in a set so duplicate items cannot be added to your products. When duplicate items are added, make a “multi-pack” part.
 >File(s):<br> /src/main/java/com/example/demo/bootstrap/BootStrapData.java <br>
